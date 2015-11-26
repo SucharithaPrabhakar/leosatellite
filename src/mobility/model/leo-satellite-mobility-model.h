@@ -15,14 +15,15 @@ public:
    static TypeId GetTypeId (void);
    LEOSatelliteMobilityModel ();
    virtual ~LEOSatelliteMobilityModel ();
-  
+   LEOSatelliteHelper m_helper;
+   void setSphericalPos(const LEOSatPolarPos& polarPos);
 private:
    virtual LEOSatSphericalPos DoGetSphericalPos(void) const;
    virtual void DoSetSphericalPos(const LEOSatPolarPos& polarPos);
    virtual Vector DoGetPosition (void) const;
    virtual void DoSetPosition (const Vector &position);
    virtual Vector DoGetVelocity (void) const;
-   LEOSatelliteHelper m_helper;
+   //LEOSatelliteHelper m_helper;
 };
 
 } //namespace ns3

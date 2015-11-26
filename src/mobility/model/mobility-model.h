@@ -53,7 +53,6 @@ struct LEOSatSphericalPos
    double phi;
    double inclination;
    double period;
-   //LEOSatSphericalPos() : r(), theta(), phi(), inclination(), period() {}
 };
 
 class MobilityModel : public Object

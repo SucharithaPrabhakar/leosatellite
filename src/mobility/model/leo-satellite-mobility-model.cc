@@ -36,6 +36,12 @@ LEOSatelliteMobilityModel::DoSetSphericalPos(const LEOSatPolarPos& pos)
   NotifyCourseChange();
 }
 
+void
+LEOSatelliteMobilityModel::setSphericalPos(const LEOSatPolarPos& polarPos)
+{
+  DoSetSphericalPos(polarPos);
+}
+
 Vector
 LEOSatelliteMobilityModel::DoGetPosition (void) const
 {

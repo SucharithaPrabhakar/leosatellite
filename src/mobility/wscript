@@ -35,6 +35,7 @@ def build(bld):
         'test/waypoint-mobility-model-test.cc',
         'test/geo-to-cartesian-test.cc',
         'test/rand-cart-around-geo-test.cc',
+        'test/leo-satellite-mobility-model-test.cc',
         ]
 
     headers = bld(features='ns3header')
