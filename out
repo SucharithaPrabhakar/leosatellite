@@ -1,0 +1,6 @@
+Waf: Entering directory `/home/sucharitha/workspaces/an_project/ns3/ns-allinone-3.24/ns-3.24/build'
+[ 835/2355] Compiling examples/routing/manet-routing-compare.cc
+[ 838/2355] Compiling examples/matrix-topology/matrix-topology.cc
+[ 848/2355] Compiling examples/wireless/mixed-wireless.cc
+[ 849/2355] Compiling examples/wireless/wifi-adhoc.cc
+Waf: Leaving directory `/home/sucharitha/workspaces/an_project/ns3/ns-allinone-3.24/ns-3.24/build'
