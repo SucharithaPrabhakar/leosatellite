@@ -55,6 +55,20 @@ struct LEOSatSphericalPos
    double period;
 };
 
+struct TerminalPolarPos
+{
+  double latitude;
+  double longitude;
+};
+
+struct TerminalSphericalPos
+{
+   double r;
+   double theta;
+   double phi;
+   double period;
+};
+
 class MobilityModel : public Object
 {
 public:
@@ -75,9 +89,11 @@ public:
    */
   void SetPosition (const Vector &position);
 
-  /* Sucharitha: For LEO Satellite only */
-  LEOSatSphericalPos GetSphericalPos(void) const;
-  void SetSphericalPos(const LEOSatPolarPos &polarPos);
+  LEOSatSphericalPos GetSatSphericalPos(void) const;
+  void SetSatSphericalPos(const LEOSatPolarPos &polarPos);
+
+  TerminalSphericalPos GetTermSphericalPos(void) const;
+  void SetTermSphericalPos(const TerminalPolarPos &polarPos);
 
   /**
    * \return the current velocity.
@@ -147,10 +163,11 @@ private:
    */
   virtual int64_t DoAssignStreams (int64_t start);
    
-  /* Sucharitha: For LEO Satellite only */
-  virtual LEOSatSphericalPos DoGetSphericalPos(void) const;
-  virtual void DoSetSphericalPos(const LEOSatPolarPos& polarPos);
+  virtual LEOSatSphericalPos DoGetSatSphericalPos(void) const;
+  virtual void DoSetSatSphericalPos(const LEOSatPolarPos& polarPos);
 
+  virtual TerminalSphericalPos DoGetTermSphericalPos(void) const;
+  virtual void DoSetTermSphericalPos(const TerminalPolarPos &polarPos);
 
   /**
    * Used to alert subscribers that a change in direction, velocity,

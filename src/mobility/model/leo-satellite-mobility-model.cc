@@ -23,23 +23,23 @@ LEOSatelliteMobilityModel::~LEOSatelliteMobilityModel ()
 }
 
 LEOSatSphericalPos
-LEOSatelliteMobilityModel::DoGetSphericalPos(void) const
+LEOSatelliteMobilityModel::DoGetSatSphericalPos(void) const
 {
    m_helper.Update();
    return m_helper.GetCurrentPos();
 }
 
 void
-LEOSatelliteMobilityModel::DoSetSphericalPos(const LEOSatPolarPos& pos)
+LEOSatelliteMobilityModel::DoSetSatSphericalPos(const LEOSatPolarPos& pos)
 {
   m_helper.SetPos(pos);
   NotifyCourseChange();
 }
 
 void
-LEOSatelliteMobilityModel::setSphericalPos(const LEOSatPolarPos& polarPos)
+LEOSatelliteMobilityModel::setSatSphericalPos(const LEOSatPolarPos& polarPos)
 {
-  DoSetSphericalPos(polarPos);
+  DoSetSatSphericalPos(polarPos);
 }
 
 Vector

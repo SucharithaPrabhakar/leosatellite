@@ -67,16 +67,32 @@ MobilityModel::GetPosition (void) const
 }
 
 LEOSatSphericalPos
-MobilityModel::GetSphericalPos(void) const
+MobilityModel::GetSatSphericalPos(void) const
 {
-  return DoGetSphericalPos();
+  return DoGetSatSphericalPos();
 }
 
 LEOSatSphericalPos
-MobilityModel::DoGetSphericalPos(void) const
+MobilityModel::DoGetSatSphericalPos(void) const
 {
   // Return nothing
   struct LEOSatSphericalPos pos;
+  return pos;
+}
+
+TerminalSphericalPos
+MobilityModel::GetTermSphericalPos(void) const
+{
+
+  return DoGetTermSphericalPos();
+}
+
+
+TerminalSphericalPos
+MobilityModel::DoGetTermSphericalPos(void) const
+{
+  // Return nothing
+  struct TerminalSphericalPos pos;
   return pos;
 }
 
@@ -86,6 +102,7 @@ MobilityModel::GetVelocity (void) const
   return DoGetVelocity ();
 }
 
+
 void 
 MobilityModel::SetPosition (const Vector &position)
 {
@@ -93,13 +110,26 @@ MobilityModel::SetPosition (const Vector &position)
 }
 
 void
-MobilityModel::SetSphericalPos(const LEOSatPolarPos  &polarPos)
+MobilityModel::SetSatSphericalPos(const LEOSatPolarPos  &polarPos)
 {
-  DoSetSphericalPos(polarPos);
+  DoSetSatSphericalPos(polarPos);
+
 }
 
 void
-MobilityModel::DoSetSphericalPos(const LEOSatPolarPos &polarPos)
+MobilityModel::DoSetSatSphericalPos(const LEOSatPolarPos &polarPos)
+{
+  //Do nothing
+}
+
+void
+MobilityModel::SetTermSphericalPos(const TerminalPolarPos  &polarPos)
+{
+  DoSetTermSphericalPos(polarPos);
+}
+
+void
+MobilityModel::DoSetTermSphericalPos(const TerminalPolarPos &polarPos)
 {
   //Do nothing
 }
