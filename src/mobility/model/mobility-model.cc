@@ -110,10 +110,9 @@ MobilityModel::SetPosition (const Vector &position)
 }
 
 void
-MobilityModel::SetSatSphericalPos(const LEOSatPolarPos  &polarPos)
+MobilityModel::SetSatSphericalPos(const LEOSatPolarPos &polarPos)
 {
   DoSetSatSphericalPos(polarPos);
-
 }
 
 void

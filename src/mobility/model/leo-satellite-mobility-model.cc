@@ -33,6 +33,7 @@ void
 LEOSatelliteMobilityModel::DoSetSatSphericalPos(const LEOSatPolarPos& pos)
 {
   m_helper.SetPos(pos);
+  m_helper.Unpause();
   NotifyCourseChange();
 }
 

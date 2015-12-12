@@ -23,14 +23,13 @@ LEOSatelliteHelper::computeCurPos(double timeAdvance) const
 {
   double partial; // fraction of orbit period completed
   LEOSatSphericalPos initialSphericalPos =  m_pos;
+  NS_LOG_FUNCTION(this << "CHECK: Spherical position before update"  << "r" << m_pos.r << "theta" << m_pos.theta << "phi" << m_pos.phi);
   partial = (fmod(timeAdvance, initialSphericalPos.period)/initialSphericalPos.period) * 2*PI; //rad
-
-  //Sucharitha: timeadvance is in seconds. Verify if that is correct.
-
+  NS_LOG_FUNCTION(this << "CHECK: partial is" << partial << "inclination is" << initialSphericalPos.inclination);
   LEOSatSphericalPos curSphericalPos, newSphericalPos;
   curSphericalPos.theta = fmod(initialSphericalPos.theta + partial, 2*PI);
   curSphericalPos.phi = initialSphericalPos.phi;
-  NS_ASSERT(initialSphericalPos.inclination < PI);
+  //NS_ASSERT(this << initialSphericalPos.inclination < PI);
   newSphericalPos.theta = PI/2 - asin(sin(initialSphericalPos.inclination) * sin(curSphericalPos.theta));
   if  ((curSphericalPos.theta > PI/2) && (curSphericalPos.theta < 3*PI/2))
   {
@@ -45,13 +44,17 @@ LEOSatelliteHelper::computeCurPos(double timeAdvance) const
   curSphericalPos.r = initialSphericalPos.r;
   curSphericalPos.theta = newSphericalPos.theta;
   curSphericalPos.phi = newSphericalPos.phi;
+  curSphericalPos.inclination = initialSphericalPos.inclination;
+  curSphericalPos.period = initialSphericalPos.period;
+  NS_LOG_FUNCTION(this << "Current Spherical position" << "r" << curSphericalPos.r << "theta" << curSphericalPos.theta << "phi" << curSphericalPos.phi << "Partial" << curSphericalPos.period << "Inclination is" << curSphericalPos.inclination);
   return curSphericalPos;
 }
 
 LEOSatSphericalPos
 LEOSatelliteHelper::convertPolarToSpherical(const LEOSatPolarPos &polarPos)
 {
-   NS_LOG_FUNCTION (this << polarPos.altitude << polarPos.longitude <<    polarPos.alpha << polarPos.inclination);
+   NS_LOG_FUNCTION (this << "altitude" << polarPos.altitude << "longitude" << polarPos.longitude << "alpha" <<  polarPos.alpha << "inclinations" << polarPos.inclination);
+
    LEOSatSphericalPos sphericalPos;
    // Check validity of passed values.
    if (polarPos.altitude < 0)
@@ -70,8 +73,6 @@ LEOSatelliteHelper::convertPolarToSpherical(const LEOSatPolarPos &polarPos)
    {
       NS_LOG_FUNCTION(this << "Inclination out of bounds");
    }
-
-   m_paused = true;
    sphericalPos.r = polarPos.altitude + EARTH_RADIUS;
    sphericalPos.theta = DEG_TO_RAD(polarPos.alpha);
    if (polarPos.longitude < 0)
@@ -97,7 +98,7 @@ LEOSatelliteHelper::LEOSatelliteHelper()
 // Sucharitha: Make sure that function aborts with invalid values
 LEOSatelliteHelper::LEOSatelliteHelper (const LEOSatPolarPos &polarPos)
 {
-   NS_LOG_FUNCTION (this << polarPos.altitude << polarPos.longitude <<    polarPos.alpha << polarPos.inclination);
+   /*NS_LOG_FUNCTION (this << polarPos.altitude << polarPos.longitude << polarPos.alpha << polarPos.inclination);
 
    // Check validity of passed values.
    if (polarPos.altitude < 0)
@@ -117,7 +118,6 @@ LEOSatelliteHelper::LEOSatelliteHelper (const LEOSatPolarPos &polarPos)
       NS_LOG_FUNCTION(this << "Inclination out of bounds");
    }
 
-  m_paused = true;
   m_pos.r = polarPos.altitude + EARTH_RADIUS;
   m_pos.theta = DEG_TO_RAD(polarPos.alpha);
   if (polarPos.longitude < 0)
@@ -130,14 +130,15 @@ LEOSatelliteHelper::LEOSatelliteHelper (const LEOSatPolarPos &polarPos)
   }
   m_pos.inclination = DEG_TO_RAD(polarPos.inclination);
   double num = m_pos.r * m_pos.r * m_pos.r;
-  m_pos.period = 2 * PI * sqrt(num/MU);
+  m_pos.period = 2 * PI * sqrt(num/MU); */
+  m_pos = convertPolarToSpherical(polarPos);
 }
 
 
 void
 LEOSatelliteHelper::SetPos(const LEOSatPolarPos& pos)
 {
-   NS_LOG_FUNCTION (this << pos.altitude << pos.longitude << pos.alpha << pos.inclination << pos.plane);
+   NS_LOG_FUNCTION (this << "altitude" << pos.altitude << "longitude" << pos.longitude << "alpha" << pos.alpha << "inclination" << pos.inclination << "plane" << pos.plane);
    m_pos = convertPolarToSpherical(pos);
    m_lastUpdate = Simulator::Now();
 }

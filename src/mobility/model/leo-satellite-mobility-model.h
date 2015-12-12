@@ -17,9 +17,9 @@ public:
    virtual ~LEOSatelliteMobilityModel ();
    LEOSatelliteHelper m_helper;
    void setSatSphericalPos(const LEOSatPolarPos& polarPos);
-private:
    virtual LEOSatSphericalPos DoGetSatSphericalPos(void) const;
    virtual void DoSetSatSphericalPos(const LEOSatPolarPos& polarPos);
+private:
    virtual Vector DoGetPosition (void) const;
    virtual void DoSetPosition (const Vector &position);
    virtual Vector DoGetVelocity (void) const;

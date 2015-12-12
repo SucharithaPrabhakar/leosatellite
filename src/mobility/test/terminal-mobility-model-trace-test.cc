@@ -34,9 +34,6 @@ TerminalMobilityTestCase::~TerminalMobilityTestCase()
 void TerminalMobilityTestCase::TestPosition(TerminalSphericalPos expectedPos)
 {
    TerminalSphericalPos pos= m_mob->DoGetTermSphericalPos();
-/*NS_TEST_EXPECT_MSG_EQ_TOL_INTERNAL (pos.r, expectedPos.r, 0.001, "Position not equal", __FILE__, __LINE__);
-NS_TEST_EXPECT_MSG_EQ_TOL_INTERNAL (pos.theta, expectedPos.theta, 0.001, "Position not equal", __FILE__, __LINE__);
-NS_TEST_EXPECT_MSG_EQ_TOL_INTERNAL (pos.phi, expectedPos.phi, 0.001, "Position not equal", __FILE__, __LINE__);*/
    NS_TEST_ASSERT_MSG_EQ_TOL (pos.r,
                               expectedPos.r,
                               0.001,

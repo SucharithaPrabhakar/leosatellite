@@ -33,7 +33,7 @@ TerminalHelper::computeCurPos(double timeAdvance) const
 TerminalSphericalPos
 TerminalHelper::convertPolarToSpherical(const TerminalPolarPos &polarPos)
 {
-   NS_LOG_FUNCTION (this << polarPos.latitude << polarPos.longitude);
+   NS_LOG_INFO(this << polarPos.latitude << polarPos.longitude);
    TerminalSphericalPos sphericalPos;
    // Check validity of passed values.
   
@@ -66,13 +66,14 @@ TerminalHelper::convertPolarToSpherical(const TerminalPolarPos &polarPos)
 TerminalHelper::TerminalHelper()
      : m_paused (true)
 {
-   NS_LOG_FUNCTION (this);
+   NS_LOG_INFO(this);
 }
 
 
 TerminalHelper::TerminalHelper (const TerminalPolarPos &polarPos)
 {
-   NS_LOG_FUNCTION (this << polarPos.latitude << polarPos.longitude);
+   NS_LOG_FUNCTION(this);
+   NS_LOG_INFO (this << polarPos.latitude << polarPos.longitude);
 
    // Check validity of passed values.
   
@@ -105,7 +106,7 @@ TerminalHelper::TerminalHelper (const TerminalPolarPos &polarPos)
 void
 TerminalHelper::SetPos(const TerminalPolarPos& pos)
 {
-   NS_LOG_FUNCTION (this << pos.latitude << pos.longitude);
+   NS_LOG_INFO(this << "latitude " << pos.latitude << "longitude " << pos.longitude);
    m_pos = convertPolarToSpherical(pos);
    m_lastUpdate = Simulator::Now();
 }
@@ -135,6 +136,7 @@ TerminalHelper::Update (void) const
   m_lastUpdate = now;
   if (m_paused)
   {
+    NS_LOG_INFO(this << "\npaused");
     return;
   }
   double deltaS = deltaTime.GetSeconds();

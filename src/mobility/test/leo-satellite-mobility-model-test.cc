@@ -7,7 +7,7 @@
  Command to Run this test: ./test.py -v --suite=polar-to-spherical --text=result.txt
 **/
 
-NS_LOG_COMPONENT_DEFINE ("PolarToSphericalTest");
+NS_LOG_COMPONENT_DEFINE ("LEOSatellitePolarToSphericalTest");
 
 using namespace ns3;
 

@@ -33,6 +33,7 @@ void
 TerminalMobilityModel::DoSetTermSphericalPos(const TerminalPolarPos& pos)
 {
   m_helper.SetPos(pos);
+  m_helper.Unpause();
   NotifyCourseChange();
 }
 

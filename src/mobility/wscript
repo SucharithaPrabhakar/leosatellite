@@ -39,7 +39,9 @@ def build(bld):
         'test/rand-cart-around-geo-test.cc',
         'test/leo-satellite-mobility-model-test.cc',
         'test/terminal-mobility-model-test.cc',
-        'test/terminal-mobility-model-trace-test.cc'
+        'test/terminal-mobility-model-trace-test.cc',
+        'test/leo-satellite-mobility-trace-test.cc',
+        'test/iridium-constellation.cc',
         ]
 
     headers = bld(features='ns3header')

@@ -7,7 +7,7 @@
  Command to Run this test: ./test.py -v --suite=polar-to-spherical1 --text=result.txt
 **/
 
-NS_LOG_COMPONENT_DEFINE ("PolarToSphericalTest");
+NS_LOG_COMPONENT_DEFINE ("TerminalPolarToSphericalTest");
 
 using namespace ns3;
 
